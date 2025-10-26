@@ -11,16 +11,16 @@ console.log("Hello World");
 // Assets at the /public route
 // app.use("/public", express.static(__dirname + "/public"));
 
-let responseMessage = "Hello json";
-  
-if (process.env.MESSAGE_STYLE === "uppercase") {
-  responseMessage = responseMessage.toUpperCase();
-}
-
 app.get("/json", function (req, res) {
   // let absolutePath = __dirname + '/views/index.html';
   // res.sendFile(absolutePath);
-  console.log(responseMessage);
+  let responseMessage = "Hello json";
+  
+  if (process.env.MESSAGE_STYLE === "uppercase") {
+    responseMessage = responseMessage.toUpperCase();
+    console.log(responseMessage);
+  }
+  
   res.json({ "message": responseMessage });
 });
 
