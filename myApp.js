@@ -23,6 +23,18 @@ app.get('/:word/echo', function (req, res) {
   res.json({ echo: word });    // respond with {echo: word}
 });
 
+app.route('/name')
+  .get(function (req, res) {
+    const firstName = req.query.first; // get 'first' from query parameters
+    const lastName = req.query.last;   // get 'last' from query parameters
+    res.json({ name: `${firstName} ${lastName}` }); // respond with full name
+  })
+  .post(function (req, res) {
+    const firstName = req.body.first; // get 'first' from request body
+    const lastName = req.body.last;   // get 'last' from request body
+    res.json({ name: `${firstName} ${lastName}` }); // respond with full name
+  }); 
+
 // Example routes
 app.get("/json", function (req, res) {
   let responseMessage = "Hello json";
