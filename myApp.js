@@ -8,6 +8,16 @@ app.use(function (req, res, next) {
   next(); // pass control to the next middleware or route handler
 });
 
+app.get('/now', 
+  function (req, res, next) {
+    req.time = new Date().toString(); // attach current time to request
+    next(); // pass control to the next handler
+  },
+  function (req, res) {
+    res.json({ time: req.time }); // send JSON response
+  }
+);
+
 // Example routes
 app.get("/json", function (req, res) {
   let responseMessage = "Hello json";
