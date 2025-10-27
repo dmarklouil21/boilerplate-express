@@ -18,6 +18,11 @@ app.get('/now',
   }
 );
 
+app.get('/:word/echo', function (req, res) {
+  const { word } = req.params; // extract 'word' from URL
+  res.json({ echo: word });    // respond with {echo: word}
+});
+
 // Example routes
 app.get("/json", function (req, res) {
   let responseMessage = "Hello json";
