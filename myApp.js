@@ -1,58 +1,22 @@
-require('dotenv').config()
+require('dotenv').config();
 
 let express = require('express');
 let app = express();
 
-console.log("Hello World");
-
-// Normal usage
-// app.use(express.static(__dirname + "/public"));
-
-// Assets at the /public route
-// app.use("/public", express.static(__dirname + "/public"));
-
-app.get("/json", function (req, res) {
-  // let absolutePath = __dirname + '/views/index.html';
-  // res.sendFile(absolutePath);
-  let responseMessage = "Hello json";
-  
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    responseMessage = responseMessage.toUpperCase();
-    console.log(responseMessage);
-  }
-  
-  res.json({ "message": responseMessage });
+app.use(function (req, res, next) {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next(); // pass control to the next middleware or route handler
 });
 
+// Example routes
+app.get("/json", function (req, res) {
+  let responseMessage = "Hello json";
 
+  if (process.env.MESSAGE_STYLE === "uppercase") {
+    responseMessage = responseMessage.toUpperCase();
+  }
 
+  res.json({ message: responseMessage });
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+module.exports = app;
