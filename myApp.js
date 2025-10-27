@@ -1,10 +1,14 @@
 require('dotenv').config();
 
-let express = require('express');
 let bodyParser = require('body-parser');
+
+let express = require('express');
 let app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(bodyParser.json());
+
+// Middleware to log method, path, and IP
 
 app.use(function (req, res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
